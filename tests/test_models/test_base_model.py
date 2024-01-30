@@ -24,3 +24,22 @@ class TestBaseModel(unittest.TestCase):
         currently_updated_at = obj.updated_at
         obj.save()
         self.assertNotEqual(currently_updated_at, obj.updated_at)
+
+    def test_dict(self):
+        obj = BaseModel()
+        obj_dict = obj.to_dict()
+
+        self.assertIsInstance(obj_dict, dict)
+        self.assertIn('__class__', obj_dict)
+        self.assertEqual(obj_dict['__class__'], obj.__class__.__name__)
+        self.assertIn('id', obj_dict)
+        self.assertEqual(obj_dict['id'], obj.id)
+        self.assertIn('created_at', obj_dict)
+        self.assertIn('updated_at', obj_dict)
+
+        created_at_str = datetime.strptime(obj_dict['created_at'], "%Y-%m-%dT%H:%M:%S.%f")
+        updated_at_str = datetime.strptime(obj_dict['updated_at'], "%Y-%m-%dT%H:%M:%S.%f")
+
+        self.assertEqual(created_at_str, obj.created_at)
+        self.assertEqual(updated_at_str, obj.updated_at)
+
