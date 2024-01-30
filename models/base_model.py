@@ -5,7 +5,7 @@ from datetime import time
 
 
 class BaseModel:
-    def __init__(self, *args):
+    def __init__(self):
         """Assigning them to the right values"""
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
