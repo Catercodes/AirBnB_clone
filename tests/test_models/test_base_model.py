@@ -43,3 +43,9 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(created_at_str, obj.created_at)
         self.assertEqual(updated_at_str, obj.updated_at)
 
+    def test_str_method(self):
+        obj = BaseModel()
+        expected_str = f"[{obj.__class__.__name__}] ({obj.id}) {obj.__dict__}"
+        self.assertEqual(str(obj), expected_str)
+
+
