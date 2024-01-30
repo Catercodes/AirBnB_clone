@@ -17,7 +17,7 @@ class BaseModel:
         _str = _str.format(
             self.__class__.__name__, self.id, str(
                 self.__dict__))
-        return st
+        return _str
 
     def save(self):
         """ update attr to the current time"""
