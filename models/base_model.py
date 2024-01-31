@@ -17,6 +17,7 @@ class BaseModel:
                     if key in ['updated_at', 'created_at']:
                         value = datetime.strptime(
                             value, '%Y-%m-%dT%H:%M:%S.%f')
+                        setattr(self, key, value)
 
         else:
             # Generate a unique ID and convert to string
