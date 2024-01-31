@@ -5,11 +5,24 @@ from datetime import time
 
 
 class BaseModel:
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Assigning them to the right values"""
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
+
+        if kwargs:
+            for key, value in kwargs.items():
+                if key != '__class__':
+                    if key in ['updated_at', 'created_at']:
+                        value = datetime.strptime(
+                            value, '%Y-%m-%dT%H:%M:%S.%f')
+
+        else:
+            # Generate a unique ID and convert to string
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """ returns the string format of the above"""
