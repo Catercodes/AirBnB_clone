@@ -1,11 +1,12 @@
 #!/usr/bin/python3
-
+"""The module contains my console"""
 import cmd
 import string
 import sys
 
 
 class MyCmd(cmd.Cmd):
+    """ The cmd"""
     prompt = "(hbnb) "
 
     def do_hello(self, arg):
@@ -13,10 +14,11 @@ class MyCmd(cmd.Cmd):
         print("Hello,", arg)
 
     def emptyline(self):
-        print("Empty line! Type 'hello' followed by a name.")
+        """ This take care of Emptyline"""
+        pass
 
     def do_quit(self, arg):
-        """ The method quits from the interactive mode"""
+        """Quit command to exit the program"""
         return True
 
     def default(self, line):
@@ -30,4 +32,4 @@ class MyCmd(cmd.Cmd):
 
 if __name__ == '__main__':
     my_cmd = MyCmd()
-    my_cmd.cmdloop("Welcome to Chris's Console")
+    my_cmd.cmdloop()
