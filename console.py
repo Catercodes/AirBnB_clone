@@ -28,6 +28,14 @@ class MyCmd(cmd.Cmd):
     def do_EOF(self, arg):
         """ Exits out of the EOF command line"""
         return True
+    def do_create(self, line):
+        if line == '':
+            print("** class name missing **")
+        elif line  !=  MyCmd.classes:
+            print("** class doesn't exist **")
+        else:
+            storage.save()
+            print(obj.id)
 
 
 if __name__ == '__main__':
